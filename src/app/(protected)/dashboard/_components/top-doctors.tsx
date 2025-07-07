@@ -23,7 +23,6 @@ export default function TopDoctors({ doctors }: TopDoctorsProps) {
           </div>
         </div>
 
-        {/* Doctors List */}
         <div className="space-y-6">
           {doctors.map((doctor) => (
             <div key={doctor.id} className="flex items-center justify-between">
