@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import { Calendar } from "lucide-react";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DataTable } from "@/components/ui/data-table";
 import {
@@ -15,6 +16,7 @@ import {
 } from "@/components/ui/page-container";
 import { getDashboard } from "@/data/get-dashboard";
 import { auth } from "@/lib/auth";
+
 import { appointmentsTableColumns } from "../appointments/_components/table-columns";
 import AppointmentsChart from "./_components/appointments-chart";
 import { DatePicker } from "./_components/date-picker";

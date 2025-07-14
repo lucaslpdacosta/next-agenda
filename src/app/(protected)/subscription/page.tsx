@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+
 import {
   PageContainer,
   PageContent,
@@ -9,6 +10,7 @@ import {
   PageTitle,
 } from "@/components/ui/page-container";
 import { auth } from "@/lib/auth";
+
 import { SubscriptionPlan } from "./_components/subscription-plan";
 
 const SubscriptionPage = async () => {

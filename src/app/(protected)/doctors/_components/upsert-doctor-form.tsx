@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { NumericFormat } from "react-number-format";
 import { toast } from "sonner";
 import { z } from "zod";
+
 import { upsertDoctor } from "@/actions/upsert-doctor";
 import { Button } from "@/components/ui/button";
 import {
@@ -32,8 +33,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { medicalSpecialties } from "../_constants";
 import { doctorsTable } from "@/db/schema";
+
+import { medicalSpecialties } from "../_constants";
 
 const formSchema = z
   .object({

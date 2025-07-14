@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+
 import {
   Dialog,
   DialogContent,
@@ -8,6 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { auth } from "@/lib/auth";
+
 import ClinicForm from "./_components/form";
 
 const ClinicFormPage = async () => {

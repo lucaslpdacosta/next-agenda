@@ -6,6 +6,7 @@ import utc from "dayjs/plugin/utc";
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { z } from "zod";
+
 import { db } from "@/db";
 import { appointmentsTable, doctorsTable } from "@/db/schema";
 import { generateTimeSlots } from "@/helpers/time";

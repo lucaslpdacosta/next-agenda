@@ -1,6 +1,7 @@
 import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+
 import { db } from "@/db";
 import { usersTable } from "@/db/schema";
 
@@ -34,27 +35,18 @@ export const POST = async (request: Request) => {
 
   switch (event.type) {
     case "invoice.paid": {
-      const invoice = event.data.object as any;
+      const invoice = event.data.object as Stripe.Invoice;
 
-      const subscriptionId = invoice.parent?.subscription_details?.subscription;
-      const userId = invoice.parent?.subscription_details?.metadata?.userId;
-
+      const subscriptionId = (invoice as any).subscription;
       if (!subscriptionId || typeof subscriptionId !== "string") {
-        throw new Error(
-          "Subscription ID not found in invoice parent.subscription_details",
-        );
-      }
-
-      if (!userId || typeof userId !== "string") {
-        throw new Error(
-          "User ID not found in invoice parent.subscription_details.metadata",
-        );
+        throw new Error("Subscription ID not found in invoice");
       }
 
       const subscription = await stripe.subscriptions.retrieve(subscriptionId);
 
-      if (!subscription) {
-        throw new Error("Subscription not found");
+      const userId = subscription.metadata?.userId;
+      if (!userId || typeof userId !== "string") {
+        throw new Error("User ID not found in subscription metadata");
       }
 
       await db

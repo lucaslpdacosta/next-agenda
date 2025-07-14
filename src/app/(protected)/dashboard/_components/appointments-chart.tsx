@@ -1,10 +1,12 @@
 "use client";
 
 import "dayjs/locale/pt-br";
+
 import dayjs from "dayjs";
 dayjs.locale("pt-br");
 import { DollarSign } from "lucide-react";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   type ChartConfig,

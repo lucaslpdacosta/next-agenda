@@ -6,7 +6,11 @@ import {
   DollarSignIcon,
   TrashIcon,
 } from "lucide-react";
+import { useAction } from "next-safe-action/hooks";
 import { useState } from "react";
+import { toast } from "sonner";
+
+import { deleteDoctor } from "@/actions/delete-doctor";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -31,11 +35,9 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { Separator } from "@/components/ui/separator";
 import { doctorsTable } from "@/db/schema";
 import { formatCurrencyInCents } from "@/helpers/currency";
+
 import { getAvailability } from "../_helpers/availability";
 import UpsertDoctorForm from "./upsert-doctor-form";
-import { deleteDoctor } from "@/actions/delete-doctor";
-import { useAction } from "next-safe-action/hooks";
-import { toast } from "sonner";
 
 interface DoctorCardProps {
   doctor: typeof doctorsTable.$inferSelect;

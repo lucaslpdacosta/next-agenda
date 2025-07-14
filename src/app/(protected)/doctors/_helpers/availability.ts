@@ -1,6 +1,8 @@
 import "dayjs/locale/pt-br";
+
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
+
 import { doctorsTable } from "@/db/schema";
 
 dayjs.extend(utc);

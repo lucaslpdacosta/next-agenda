@@ -2,6 +2,7 @@ import { EditIcon, MoreVerticalIcon, TrashIcon } from "lucide-react";
 import { useAction } from "next-safe-action/hooks";
 import { useState } from "react";
 import { toast } from "sonner";
+
 import { deletePatient } from "@/actions/delete-patient";
 import {
   AlertDialog,
@@ -25,6 +26,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { patientsTable } from "@/db/schema";
+
 import UpsertPatientForm from "./upsert-patient-form";
 
 interface PatientsTableActionsProps {
