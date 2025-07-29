@@ -36,19 +36,16 @@ export const POST = async (request: Request) => {
   switch (event.type) {
     case "invoice.paid": {
       const invoice = event.data.object as Stripe.Invoice;
-
-      const subscriptionId = (invoice as any).subscription;
+      const subscriptionId =
+        "subscription" in invoice ? invoice.subscription : undefined;
       if (!subscriptionId || typeof subscriptionId !== "string") {
         throw new Error("Subscription ID not found in invoice");
       }
-
       const subscription = await stripe.subscriptions.retrieve(subscriptionId);
-
       const userId = subscription.metadata?.userId;
       if (!userId || typeof userId !== "string") {
         throw new Error("User ID not found in subscription metadata");
       }
-
       await db
         .update(usersTable)
         .set({
@@ -57,10 +54,8 @@ export const POST = async (request: Request) => {
           plan: "essential",
         })
         .where(eq(usersTable.id, userId));
-
       break;
     }
-
     case "customer.subscription.deleted": {
       const subscription = event.data.object as Stripe.Subscription;
 
