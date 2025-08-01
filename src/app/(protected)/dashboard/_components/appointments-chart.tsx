@@ -22,6 +22,13 @@ interface DailyAppointment {
   revenue: number | null;
 }
 
+interface ChartDataPoint {
+  date: string;
+  fullDate: string;
+  appointments: number;
+  revenue: number;
+}
+
 interface AppointmentsChartProps {
   dailyAppointmentsData: DailyAppointment[];
 }
@@ -35,7 +42,7 @@ const AppointmentsChart = ({
       .format("YYYY-MM-DD"),
   );
 
-  const chartData = chartDays.map((date) => {
+  const chartData: ChartDataPoint[] = chartDays.map((date) => {
     const dataForDay = dailyAppointmentsData.find((item) => item.date === date);
     return {
       date: dayjs(date).format("DD/MM"),
@@ -118,7 +125,8 @@ const AppointmentsChart = ({
                   }}
                   labelFormatter={(label, payload) => {
                     if (payload && payload[0]) {
-                      return dayjs(payload[0].payload?.fullDate).format(
+                      const dataPoint = payload[0].payload as ChartDataPoint;
+                      return dayjs(dataPoint.fullDate).format(
                         "DD/MM/YYYY (dddd)",
                       );
                     }
