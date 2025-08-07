@@ -1,4 +1,5 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SubscriptionGuard } from "@/components/subscription-guard";
 
 import { AppSidebar } from "./_components/app-sidebar";
 
@@ -8,7 +9,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <AppSidebar />
       <main className="w-full">
         <SidebarTrigger />
-        {children}
+        <SubscriptionGuard>{children}</SubscriptionGuard>
       </main>
     </SidebarProvider>
   );
